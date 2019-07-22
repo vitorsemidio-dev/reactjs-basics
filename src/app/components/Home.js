@@ -12,8 +12,8 @@ export default class Home extends Component {
     };
 
     componentWillMount() {
-        const { age } = this.props;
-        this.setState({ age })
+        const { age, name } = this.props;
+        this.setState({ age, name })
     }
 
     onMakeOlder() {
@@ -27,12 +27,17 @@ export default class Home extends Component {
         age--;
         this.setState({ age });
     }
+
+    onChangeName(name) {
+        this.setState({name})
+    }
     render() {
-        const { name } = this.props;
+        const { name, age } = this.state;
         return (
             <div>
                 <p>In a new Component</p>
-                <p>Your name is {name}, your age is {this.state.age} </p>
+                <p>Your name is {name}</p>
+                <p>your age is {age} </p>
                 <hr/>
                 <div className="buttons">
                     <button 
@@ -44,7 +49,24 @@ export default class Home extends Component {
                         className="btn btn-outline-primary"
                         onClick={this.onMakeOlder.bind(this)}>
                         Make me older
-                    </button>                    
+                    </button>
+                </div>
+                <div className="buttons">
+                    <button 
+                        className="btn btn-outline-primary"
+                        onClick={() => this.onChangeName('Armin')}>
+                        Armin
+                    </button>
+                    <button 
+                        className="btn btn-outline-primary"
+                        onClick={() => this.onChangeName('Mikasa')}>
+                        Mikasa
+                    </button>
+                    <button 
+                        className="btn btn-outline-primary"
+                        onClick={() => this.onChangeName('Eren')}>
+                        Eren
+                    </button>
                 </div>
             </div>
         )
