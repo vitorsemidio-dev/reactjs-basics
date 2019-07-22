@@ -33,6 +33,7 @@ export default class Home extends Component {
     }
     render() {
         const { name, age } = this.state;
+        const { names } = this.props;
         return (
             <div>
                 <p>In a new Component</p>
@@ -52,21 +53,14 @@ export default class Home extends Component {
                     </button>
                 </div>
                 <div className="buttons">
-                    <button 
-                        className="btn btn-outline-primary"
-                        onClick={() => this.onChangeName('Armin')}>
-                        Armin
-                    </button>
-                    <button 
-                        className="btn btn-outline-primary"
-                        onClick={() => this.onChangeName('Mikasa')}>
-                        Mikasa
-                    </button>
-                    <button 
-                        className="btn btn-outline-primary"
-                        onClick={() => this.onChangeName('Eren')}>
-                        Eren
-                    </button>
+                    {names.map((name, i) => (
+                        <button 
+                            key={i}
+                            className="btn btn-outline-primary"
+                            onClick={() => this.onChangeName(name)}>
+                            {name}
+                        </button>
+                    ))}
                 </div>
             </div>
         )
