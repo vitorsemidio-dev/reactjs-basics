@@ -11,12 +11,12 @@ class App extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1">
-                        <Header/>
+                        <Header homeLink="Home"/>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1">
-                        <Home names={names} teste={'teste'} name={'Eren'} age={20}/>
+                        <Home names={names} name={'Eren'} age={20}/>
                     </div>
                 </div>
             </div>
