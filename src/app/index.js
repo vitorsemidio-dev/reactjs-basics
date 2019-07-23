@@ -37,6 +37,7 @@ class App extends Component {
                             age={20}
                             greet={this.onGreet}
                             changeLink={this.onChangeLinkName.bind(this)}
+                            initialLinkName={this.state.homeLink}
                         />
                     </div>
                 </div>

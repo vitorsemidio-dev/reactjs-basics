@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 
 
 export default class Home extends Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             age: 0,
             name: '',
-            homeLink: 'New name'
+            homeLink: props.initialLinkName
         }
     };
 
     componentWillMount() {
-        const { age, name } = this.props;
-        this.setState({ age, name })
+        const { age, name, } = this.props;
+        this.setState({ age, name, })
     }
 
     onMakeOlder() {
@@ -35,6 +35,12 @@ export default class Home extends Component {
 
     onChangelink() {
         this.props.changeLink(this.state.homeLink);
+    }
+
+    onHandleChange(event) {
+        this.setState({
+            homeLink: event.target.value
+        })
     }
     render() {
         const { name, age } = this.state;
@@ -69,12 +75,18 @@ export default class Home extends Component {
                 </div>
                 <hr/>
                 <button onClick={() => this.props.greet(name)} className="btn btn-default">Greet</button>
-                <button
-                    onClick={this.onChangelink.bind(this)}
-                    className="btn btn-default"
-                    >
-                    Change Header Link
-                </button>
+                <div>
+                    <input
+                        type="input/text"
+                        onChange={(event) => this.onHandleChange(event)}
+                        defaultValue={this.state.homeLink}/>
+                    <button
+                        onClick={this.onChangelink.bind(this)}
+                        className="btn btn-default"
+                        >
+                        Change Header Link Name
+                    </button>
+                </div>
             </div>
         )
     }
@@ -85,4 +97,5 @@ Home.propTypes = {
     age: PropTypes.number,
     greet: PropTypes.func,
     names: PropTypes.array,
+    initialLinkName: PropTypes.string,
 };
