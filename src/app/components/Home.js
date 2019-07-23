@@ -8,6 +8,7 @@ export default class Home extends Component {
         this.state = {
             age: 0,
             name: '',
+            homeLink: 'New name'
         }
     };
 
@@ -30,6 +31,10 @@ export default class Home extends Component {
 
     onChangeName(name) {
         this.setState({name})
+    }
+
+    onChangelink() {
+        this.props.changeLink(this.state.homeLink);
     }
     render() {
         const { name, age } = this.state;
@@ -64,6 +69,12 @@ export default class Home extends Component {
                 </div>
                 <hr/>
                 <button onClick={() => this.props.greet(name)} className="btn btn-default">Greet</button>
+                <button
+                    onClick={this.onChangelink.bind(this)}
+                    className="btn btn-default"
+                    >
+                    Change Header Link
+                </button>
             </div>
         )
     }
