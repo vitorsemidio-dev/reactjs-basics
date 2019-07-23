@@ -42,12 +42,12 @@ export default class Home extends Component {
                 <hr/>
                 <div className="buttons">
                     <button 
-                        className="btn btn-outline-primary"
+                        className="btn btn-primary"
                         onClick={() => this.onMakeNewer()}>
                         Make me newer
                     </button>
                     <button
-                        className="btn btn-outline-primary"
+                        className="btn btn-primary"
                         onClick={this.onMakeOlder.bind(this)}>
                         Make me older
                     </button>
@@ -56,12 +56,14 @@ export default class Home extends Component {
                     {names.map((name, i) => (
                         <button 
                             key={i}
-                            className="btn btn-outline-primary"
+                            className="btn btn-warning"
                             onClick={() => this.onChangeName(name)}>
                             {name}
                         </button>
                     ))}
                 </div>
+                <hr/>
+                <button onClick={() => this.props.greet(name)} className="btn btn-default">Greet</button>
             </div>
         )
     }
@@ -70,4 +72,6 @@ export default class Home extends Component {
 Home.propTypes = {
     name: PropTypes.string,
     age: PropTypes.number,
+    greet: PropTypes.func,
+    names: PropTypes.array,
 };
