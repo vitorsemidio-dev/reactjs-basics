@@ -8,7 +8,7 @@ export default class Lifecycle extends Component {
         this.state = {
             valor: 'Hello Lifecycle',
             name: null,
-            letUpdate: true, // se false, o component nao poderah ser atualizado
+            letUpdate: true, // se false, o component não poderá ser atualizado
             abortController: new AbortController(),
         }
         
