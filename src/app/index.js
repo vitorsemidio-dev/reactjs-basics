@@ -25,15 +25,15 @@ class App extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <h1>Index</h1>
-                    {lifecycleCmp}
-                </div>
-                <div className="row">
                     <button
                         onClick={this.onChangeMounted.bind(this)}
                         className="btn btn-primary">
                         (Un)Mont Lifecycle Component
                     </button>
+                </div>
+                <div className="row">
+                    <h1>Index</h1>
+                    {lifecycleCmp}
                 </div>
             </div>
         )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { RANDOM_USER_API } from "./Constants";
 
 export default class Lifecycle extends Component {
     constructor() {
@@ -6,13 +7,29 @@ export default class Lifecycle extends Component {
         console.log('Constructor');
         this.state = {
             valor: 'Hello Lifecycle',
+            name: null,
             letUpdate: true, // se false, o component nao poderah ser atualizado
+            abortController: new AbortController(),
         }
-        this.updateValor();
+        
     }
     componentDidMount() {
         console.log('componentDidMount')
+        const signal = this.state.abortController.signal;
+        fetch(RANDOM_USER_API, { signal })
+            .then(results => results.json())
+            .then(data => {
+                const {first: name} = data.results[0].name
+                this.setState({
+                    name
+                })
+            })
+            .catch(err => {
+                console.log('err catch', err.name)
+                return;
+            })
     }
+
     componentDidUpdate(prevProps, prevState) {
         console.log('componentDidUpdate', prevProps, prevState)
     }
@@ -24,6 +41,7 @@ export default class Lifecycle extends Component {
     }
     componentWillUnmount() {
         console.log('componentWillUnmount')
+        this.state.abortController.abort();
     }
     componentWillUpdate(nextProps, nextState) {
         console.log('componentWillUpdate', nextProps, nextState)
@@ -35,16 +53,15 @@ export default class Lifecycle extends Component {
         }
         return true;
     }
-    updateValor() {
-        setTimeout(() => {
-            let valor = 'NOVO TITULO'
-            this.setState({valor});
-        }, 2000);
-    }
+
     render() {
+        const { valor, name } = this.state;
         return(
             <div>
-                <h3>{this.state.valor}</h3>
+                <h3>{valor} {name ? name : 'sem nome' }</h3>
+                <div>
+                    <button className="btn btn-primary" onClick={this.componentDidMount.bind(this)}>New Request</button>
+                </div>
             </div>
         )
     }
