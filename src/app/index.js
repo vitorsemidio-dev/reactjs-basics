@@ -17,16 +17,18 @@ class App extends Component {
         })
     }
     render() {
-        let lifecycleCmp = "Vazio";
+        let lifecycleCmp = "Sem Componente Lifecycle";
         if (this.state.homeMounted) {
             lifecycleCmp = <Lifecycle/>
         }
         
         return (
-            <div>
-                <h1>Index</h1>
-                {lifecycleCmp}
-                <div>
+            <div className="container">
+                <div className="row">
+                    <h1>Index</h1>
+                    {lifecycleCmp}
+                </div>
+                <div className="row">
                     <button
                         onClick={this.onChangeMounted.bind(this)}
                         className="btn btn-primary">

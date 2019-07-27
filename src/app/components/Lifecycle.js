@@ -10,9 +10,6 @@ export default class Lifecycle extends Component {
         }
         this.updateValor();
     }
-    // componentDidCatch() {
-    //     console.log('componentDidCatch')
-    // }
     componentDidMount() {
         console.log('componentDidMount')
     }
